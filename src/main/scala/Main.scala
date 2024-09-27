@@ -1,43 +1,3 @@
-// import mainargs.{main, arg, ParserForMethods, Flag}
-// // import org.log4s._
-// // import org.slf4j.LoggerFactory
-
-
-// object Main {
-
-//   // logger.debug("Constructing new instance of MyClass")
-//   // logger.trace(s"New instance's data set:")
-//   @main
-//   def run(@arg(short = 'f', doc = "String to print repeatedly")
-//           foo: String,
-//           @arg(doc = "How many times to print string")
-//           myNum: Int = 2,
-//           @arg(doc = "Example flag, can be passed without any value to become true")
-//           bool: Flag) = {
-//     println(foo * myNum + " " + bool.value)
-//   }
-
-//   def main(args: Array[String]): Unit = ParserForMethods(this).runOrExit(args)
-//     // ParserForMethods(this).runOrExit(args.toIndexedSeq)
-//     // // private val logger: org.log4s.Logger = Option(org.log4s.getLogger).getOrElse(LoggerFactory.getLogger("Main"))
-//     // // private val logger: org.slf4j.Logger = LoggerFactory.getLogger("Main")
-//     // // internal main method with arguments annotated for parsing
-//     // @main
-//     // def run(
-//     //     @arg(short = 'c', doc = "size of the sliding word cloud") cloudSize: Int = 10,
-//     //     @arg(short = 'l', doc = "minimum word length to be considere") minLength: Int = 6,
-//     //     @arg(short = 'w', doc = "size of the sliding FIFO queue") windowSize: Int = 1000,
-//     //     @arg(short = 's', doc = "number of steps between word cloud updates") everyKSteps: Int = 10,
-//     //     @arg(short = 'f', doc = "minimum frequency for a word to be included in the cloud") minFrequency: Int = 3) =
-
-//     //     logger.debug(f"howMany=$cloudSize minLength=$minLength lastNWords=$windowSize everyKSteps=$everyKSteps minFrequency=$minFrequency")
-//     // println("Hello, world!")
-    
-
-
-// }
-
-
 package testhello
 import scala.collection.mutable
 import scala.io.StdIn
@@ -52,17 +12,8 @@ object Main{
   var cloudSize = 10
   var minLength = 6
   var windowSize = 1000
-  var everyksteps = 10
+  var everyKSteps = 10
   var minFrequency = 3
-  // @main
-  // def run(@arg(short = 'f', doc = "String to print repeatedly")
-  //         foo: String,
-  //         @arg(doc = "How many times to print string")
-  //         myNum: Int = 2,
-  //         @arg(doc = "Example flag, can be passed without any value to become true")
-  //         bool: Flag) = {
-  //   println(foo * myNum + " " + bool.value)
-  // }
 
   @main
   def run(
@@ -70,30 +21,16 @@ object Main{
     @arg(short = 'l', doc = "minimum word length to be considere") minLength: Int = 6,
     @arg(short = 'w', doc = "size of the sliding FIFO queue") windowSize: Int = 1000,
     @arg(short = 's', doc = "number of steps between word cloud updates") everyKSteps: Int = 10,
-    @arg(short = 'f', doc = "minimum frequency for a word to be included in the cloud") minFrequency: Int = 3) = {
+    @arg(short = 'f', doc = "minimum frequency for a word to be included in the cloud") minFrequency: Int = 3): Unit = {
+      this.cloudSize = cloudSize
+      this.minLength = minLength
+      this.windowSize = windowSize
+      this.everyKSteps = everyKSteps
+      this.minFrequency = minFrequency
       println(f"howMany=$cloudSize minLength=$minLength lastNWords=$windowSize everyKSteps=$everyKSteps minFrequency=$minFrequency")
   }
 
   def main(args: Array[String]): Unit = ParserForMethods(this).runOrExit(args)
-
-  // def main(args: Array[String]): Unit = ParserForMethods(this).runOrExit(args.toIndexedSeq)
-  //   // private val logger: org.log4s.Logger = Option(org.log4s.getLogger).getOrElse(LoggerFactory.getLogger("Main"))
-  //   private val logger: org.slf4j.Logger = LoggerFactory.getLogger("Main")
-  //   // internal main method with arguments annotated for parsing
-  //   @main
-  //   def run(
-  //       @arg(short = 'c', doc = "size of the sliding word cloud") cloudSize: Int = 10,
-  //       @arg(short = 'l', doc = "minimum word length to be considere") minLength: Int = 6,
-  //       @arg(short = 'w', doc = "size of the sliding FIFO queue") windowSize: Int = 1000,
-  //       @arg(short = 's', doc = "number of steps between word cloud updates") everyKSteps: Int = 10,
-  //       @arg(short = 'f', doc = "minimum frequency for a word to be included in the cloud") minFrequency: Int = 3) =
-
-  //       logger.debug(f"howMany=$cloudSize minLength=$minLength lastNWords=$windowSize everyKSteps=$everyKSteps minFrequency=$minFrequency")
-
-  //   // Default values
-    
-
-
 
     println(s"Cloud size: $cloudSize, Min length: $minLength, Window size: $windowSize")
 
@@ -162,8 +99,8 @@ object Main{
       // if (window.size >= windowSize) {
       //   printWordCloud()
       // }
-      // Update and print word cloud every `everyksteps`
-      if (window.size >= windowSize && steps % everyksteps == 0) {
+      // Update and print word cloud every `everyKSteps`
+      if (window.size >= windowSize && steps % everyKSteps == 0) {
         printWordCloud()
       }
     }
