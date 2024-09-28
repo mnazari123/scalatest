@@ -78,6 +78,8 @@ First, create the startup script:
 sbt stage
 ```
 
+
+
 Then run outside of sbt like this:
 
 ```
@@ -95,4 +97,7 @@ Add the ignore file to it.
 ```
 ./target/universal/stage/bin/scalatest -i ignore.txt < lesmisrables01unkngoog_djvu.txt
 ```
+
+Video Visualization:
+Link: https://loyolauniversitychicago-my.sharepoint.com/:v:/g/personal/mnazari_luc_edu/EQ0o-edIZMFBj-X6NL0hiaYBKzaC1V-9yWjg-YdO7Exuug?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=XzSCay
 
