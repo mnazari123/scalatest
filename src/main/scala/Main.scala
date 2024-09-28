@@ -3,8 +3,6 @@ import scala.collection.mutable
 import scala.io.StdIn
 import scala.sys.process._
 import mainargs.{main, arg, ParserForMethods, Flag}
-import org.log4s._
-import org.slf4j.LoggerFactory
 import org.knowm.xchart.{PieChartBuilder, SwingWrapper}
 
 object Main{
@@ -22,12 +20,11 @@ object Main{
     @arg(short = 'w', doc = "size of the sliding FIFO queue") windowSize: Int = 1000,
     @arg(short = 's', doc = "number of steps between word cloud updates") everyKSteps: Int = 10,
     @arg(short = 'f', doc = "minimum frequency for a word to be included in the cloud") minFrequency: Int = 3): Unit = {
-      this.cloudSize = cloudSize
-      this.minLength = minLength
-      this.windowSize = windowSize
-      this.everyKSteps = everyKSteps
-      this.minFrequency = minFrequency
-      println(f"howMany=$cloudSize minLength=$minLength lastNWords=$windowSize everyKSteps=$everyKSteps minFrequency=$minFrequency")
+    val logger = org.log4s.getLogger
+    logger.debug(f"howMany=$cloudSize minLength=$minLength lastNWords=$windowSize everyKSteps=$everyKSteps minFrequency=$minFrequency")
+
+    
+    
   }
 
   def main(args: Array[String]): Unit = ParserForMethods(this).runOrExit(args)
@@ -105,3 +102,6 @@ object Main{
       }
     }
 }
+
+
+
